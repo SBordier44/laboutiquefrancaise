@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-5">
+            <img src="{{ asset('uploads/products/' ~ product.picture) }}" alt="{{ product.name }}" class="img-fluid">
+        </div>
+        <div class="col-7 my-auto">
+            <h3>{{ product.name }}</h3>
+            <p style="font-style: italic">{{ product.subtitle }}</p>
+            <span class="product-page-price">{{ (product.price / 100) | number_format(2, ',', ' ') }} €</span>
+            <hr>
+            <p>{{ product.description }}</p>
+            <hr>
+            <a href="{{ path('add_product_to_cart', {productId: product.id}) }}" class="btn btn-primary"><i
+                        class="fas fa-cart-plus mr-1"></i>Ajouter au panier</a>
+        </div>
+    </div>
+    <hr>
+    <h3 class="font-weight-bold">Nos meilleures ventes</h3>
+    <p>Découvrez les articles les plus vendus actuellement</p>
+    <div class="row">
+        {% for product in bestProducts %}
+            <div class="col-3">
+                {{ include('product/_single_product.html.twig') }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

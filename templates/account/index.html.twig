@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mon Compte</h1>
+    {% if is_granted('ROLE_ADMIN') %}
+        <hr>
+        <small><a href="{{ path('admin') }}" class="font-weight-bold text-danger">Administration</a></small>
+        <hr>
+    {% endif %}
+    Bienvenue sur votre espace personnel {{ app.user.firstName|capitalize ~ ' ' ~ app.user.lastName|capitalize }} !<br>
+    C'est dans cet espace que vous allez pouvoir gérer vos informations personnelles ainsi que suivre vos commandes.
+    <hr>
+    <div class="row">
+        <div class="col-4 text-center">
+            <div class="account-item">
+                <a href="{{ path('account_password') }}">
+                    <img src="{{ asset('images/password.png') }}" alt="Modifier mon mot de passe"><br>
+                    Modifier mon mot de passe
+                </a>
+            </div>
+        </div>
+        <div class="col-4 text-center">
+            <div class="account-item">
+                <a href="{{ path('account_address') }}">
+                    <img src="{{ asset('images/address.png') }}" alt="Gérer mes adresses"><br>
+                    Gérer mes adresses
+                </a>
+            </div>
+        </div>
+        <div class="col-4 text-center">
+            <div class="account-item">
+                <a href="{{ path('account_order') }}">
+                    <img src="{{ asset('images/orders.png') }}" alt="Mes Commandes"><br>
+                    Mes Commandes
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
