@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Nous Contacter</h2>
+    <p>N'hésitez pas à prendre contact avec notre équipe, nous vous répondrons dans les meilleurs délais.</p>
+    <hr>
+    <div class="row">
+        <div class="col-8">
+            {{ form(form) }}
+        </div>
+        <div class="col-4">
+            <strong>La Boutique Française</strong>
+            <hr>
+            <u>Téléphone :</u> <a href="tel:+33203040506">02 03 04 05 06</a><br>
+            <u>Adresse :</u> 8 Rue du Parc Royal, 75003 Paris
+            <hr>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9726628081157!2d2.361323015924828!3d48.85873167928735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e010f3cbb6f%3A0x1835da402e032d5f!2s8%20Rue%20du%20Parc%20Royal%2C%2075003%20Paris!5e0!3m2!1sfr!2sfr!4v1615149337047!5m2!1sfr!2sfr"
+                    width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+{% endblock %}

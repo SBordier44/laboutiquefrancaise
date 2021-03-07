@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    database:
+        image: mysql:8
+        ports:
+            - 3306:3306
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: laboutiquefrancaise

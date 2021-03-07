@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="block-small">
+        <form method="post">
+            <h1 class="h3 mb-3 font-weight-normal text-center">Réinitialiser mon mot de passe</h1>
+            <div class="form-group">
+                <label for="inputEmail">Votre email</label>
+                <input type="email" name="email" id="inputEmail" class="form-control"
+                       placeholder="Votre adresse email" required autofocus autocomplete>
+            </div>
+            <button class="btn btn-sm btn-block btn-info" type="submit">
+                Valider
+            </button>
+            <hr>
+            <p class="text-center">
+                Ou souhaitez-vous <a href="{{ path('security_login') }}">plutôt vous connecter</a> ?
+            </p>
+        </form>
+    </div>
+{% endblock %}

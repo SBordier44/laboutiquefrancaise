@@ -1,0 +1,99 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "carousel";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.navbar-item-custom, .navbar-item-custom a {
+  color: #FFFFFF;
+}
+
+.product-item {
+  margin-top: 50px;
+}
+
+.product-item h5 {
+  text-transform: uppercase;
+  font-size: 15px;
+  margin-bottom: 1px;
+}
+
+.product-item .product-subtitle {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.product-item .product-price {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.product-container {
+  margin-bottom: 120px;
+}
+
+.product-page-price {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.block-small {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#order legend.col-form-label {
+  font-weight: bold;
+  text-align: center;
+}
+
+#order div.form-check {
+  @extend .enlight-block
+}
+
+.cart-summary {
+  background-color: #f4f8ff;
+  padding: 20px;
+  margin-top: 18px;
+}
+
+.enlight-block {
+  background-color: #f4f8ff;
+  padding: 20px 65px;
+  margin-top: 7px;
+}
+
+.account-item {
+  background-color: #f1f2f6;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.account-item a {
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #4b6584;
+  font-weight: bold;
+}
+
+.account-item a:hover {
+  color: #778ca0;
+  text-decoration: none;
+}

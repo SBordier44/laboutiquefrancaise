@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="block-small">
+        <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <h1 class="h3 mb-3 font-weight-normal text-center">Veuillez vous connecter</h1>
+            <div class="form-group">
+                <label for="inputEmail">Votre email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
+                       placeholder="Votre adresse email" required
+                       autofocus autocomplete>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Votre mot de passe</label>
+                <input type="password" name="password" id="inputPassword" class="form-control"
+                       placeholder="Votre mot de passe"
+                       required>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            <div class="checkbox mb-3 mt-4">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                </label>
+            </div>
+            <button class="btn btn-sm btn-block btn-info" type="submit">
+                Se Connecter
+            </button>
+            <hr>
+            <p class="text-center"><a href="{{ path('reset_password') }}">Mot de passe oublié ?</a></p>
+            <p class="text-center">Ou souhaitez-vous <a href="{{ path('register') }}">Créer un compte</a> ?</p>
+        </form>
+    </div>
+{% endblock %}

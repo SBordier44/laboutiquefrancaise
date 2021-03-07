@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mes Commandes</h1>
+    <p>C'est dans cet espace que vous allez pouvoir suivre vos commandes.</p>
+    <a href="{{ path('account') }}">Retour</a>
+    {% if app.user.orders|length == 0 %}
+        <hr>
+        <p class="text-center">Vous n'avez pas encore passé de commande</p>
+    {% else %}
+        <table class="table table-hover table-striped table-sm mt-4">
+            <thead>
+            <tr>
+                <th scope="col">Référence</th>
+                <th scope="col">Passée le</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Produits</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <th scope="row">{{ order.reference }}</th>
+                    <td>{{ order.createdAt|date('d/m/Y H:i') }}</td>
+                    <td>
+                        <span class="badge badge-secondary">
+                            {% if order.status == 1 %}
+                                Paiement accepté
+                            {% elseif order.status == 2 %}
+                                Préparation en cours
+                            {% elseif order.status == 3 %}
+                                Livraison en cours
+                            {% elseif order.status == 4 %}
+                                Livré
+                            {% endif %}
+                        </span>
+                    </td>
+                    <td>{{ order.orderItems|length }}</td>
+                    <td>{{ ((order.total + order.carrierPrice) / 100)|number_format(2, ',', ' ') }} €</td>
+                    <td class="text-right">
+                        <a href="{{ path('account_order_show', {reference: order.reference}) }}">
+                            Voir ma commande
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

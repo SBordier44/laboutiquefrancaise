@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="La boutique qui vend uniquement des articles Made in France">
+    <title>{% block title %}La boutique française - 100% Made in France{% endblock %}</title>
+    {{ encore_entry_link_tags('app') }}
+</head>
+<body class="d-flex flex-column h-100">
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="{{ path('home') }}">La boutique Française</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('products') }}">Nos produits</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Qui sommes-nous ?</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('contact') }}">Nous contacter</a>
+                </li>
+            </ul>
+            <div class="navbar-item-custom">
+                {% if app.user %}
+                    <a href="{{ path('account') }}">Mon Compte</a> | <a
+                        href="{{ path('security_logout') }}">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('security_login') }}">Connexion</a> | <a
+                        href="{{ path('register') }}">Inscription</a>
+                {% endif %}
+                <a href="{{ path('cart') }}" class="ml-4 mr-2"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+
+        </div>
+    </nav>
+</header>
+<main role="main" class="flex-shrink-0 mb-4">
+    {% if block('carousel') is defined %}
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {% for key,header in headers %}
+                    <li data-target="#myCarousel" data-slide-to="{{ key }}"
+                        class="{% if key == 0 %}active{% endif %}"></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+                {% for key,header in headers %}
+                    <div class="carousel-item{% if key == 0 %} active{% endif %}"
+                         style="background: url('{{ asset('uploads/headers/' ~ header.picture) }}'); background-size: cover;">
+                        <div class="container">
+                            <div class="carousel-caption text-left">
+                                <h1>{{ header.title }}</h1>
+                                <p>{{ header.content }}</p>
+                                <p>
+                                    <a class="btn btn-lg btn-info" href="{{ header.btnUrl }}">
+                                        {{ header.btnTitle }}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Précédent</span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Suivant</span>
+            </a>
+        </div>
+    {% endif %}
+    <div class="container marketing{% if block('carousel') is not defined %} mt-5{% endif %}">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}" role="alert">
+                    {{ message|raw }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% block body %}{% endblock %}
+    </div>
+</main>
+<footer class="footer bg-dark mt-auto py-3 text-center text-white">
+    <div class="container">
+        &copy; {{ 'now'|date('Y') }} La boutique Française <br>
+        <small>
+            La boutique 100% made in France<br>
+            <a href="#">Vie privée</a> &middot; <a href="#">CGV</a>
+        </small>
+    </div>
+</footer>
+{{ encore_entry_script_tags('app') }}
+{% block javascript %}{% endblock %}
+</body>
+</html>

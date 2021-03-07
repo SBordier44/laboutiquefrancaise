@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Je passe ma commande</h2>
+    <p>Choisissez vos préférences avant de passer votre commande.</p>
+    <hr>
+    {{ form_start(form, {action: path('order_summary')}) }}
+    <div class="row">
+        <div class="col-6">
+            {% set htmlFormAddresses %}
+                {{ form_label(form.addresses, 'Choisissez votre adresse de livraison') }}
+                <div class="text-center">
+                    <a href="{{ path('account_address_create', {referer: 'order'}) }}" class="text-info">
+                        <i class="fas fa-plus font-weight-bold mr-1"></i>Ajouter une nouvelle adresse
+                    </a>
+                </div>
+                {{ form_row(form.addresses) }}
+            {% endset %}
+            {% set htmlFormCarriers %}
+                {{ form_row(form.carriers) }}
+            {% endset %}
+            {{ htmlFormAddresses|parseTags|raw }}
+            {{ htmlFormCarriers|parseTags|raw }}
+        </div>
+        <div class="col-6">
+            <div class="text-center mt-1">
+                <strong>Récapitulatif de ma commande</strong>
+            </div>
+            <div class="cart-summary">
+                {% set total = 0 %}
+                {% for key, cartItem in cart %}
+                    <div class="row {% if key > 0 %}mt-2{% endif %}">
+                        <div class="col-2 my-auto">
+                            <img src="{{ asset('uploads/products/' ~ cartItem.product.picture) }}"
+                                 alt="{{ cartItem.product.name }}" height="75px">
+                        </div>
+                        <div class="col-6 my-auto">
+                            {{ cartItem.product.name }}<br>
+                            <small>{{ cartItem.product.subtitle }}</small>
+                        </div>
+                        <div class="col my-auto"><strong>x {{ cartItem.quantity }}</strong></div>
+                        <div class="col my-auto">
+                            {{ ((cartItem.product.price * cartItem.quantity) / 100) | number_format(2, ',', ' ') }} €
+                        </div>
+                    </div>
+                    {% set total = total + cartItem.product.price * cartItem.quantity %}
+                {% endfor %}
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-10 text-right font-weight-bold">Montant Total de mon panier</div>
+                <div class="col text-left">{{ ((total) / 100) | number_format(2, ',', ' ') }} €</div>
+            </div>
+            {{ form_row(form.submit) }}
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
