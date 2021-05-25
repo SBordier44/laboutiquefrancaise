@@ -1,13 +1,13 @@
 {
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.2",
-    "@symfony/webpack-encore": "^1.1",
+    "@fortawesome/fontawesome-free": "^5.15",
+    "@symfony/webpack-encore": "^1.3",
     "bootstrap": "^4.6",
-    "core-js": "^3.9",
-    "jquery": "^3.5.1",
+    "core-js": "^3.13",
+    "jquery": "^3.6",
     "regenerator-runtime": "^0.13",
-    "sass": "^1.32.8",
-    "sass-loader": "^11.0.1",
+    "sass": "^1.34",
+    "sass-loader": "^11.1",
     "webpack-notifier": "^1.13"
   },
   "license": "UNLICENSED",
